@@ -6,7 +6,7 @@
 /test/ChangesAndRemovals
 /benchmark/js
 /benchmark/fixtures
-/examples/**/dist
+/examples/**/build
 /coverage
 /.nyc_output
 /.jest-cache
