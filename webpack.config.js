@@ -5,6 +5,7 @@ module.exports = {
     mode: 'development',
     entry: './src/index.js',
     output: {
+        publicPath: '/',
         filename: 'main.js',
         path: path.resolve(__dirname, 'build'),
         filename: '[name].[contenthash].js',
@@ -39,5 +40,12 @@ module.exports = {
                 use: ['babel-loader'],
             },
         ],
+    },
+    resolve: {
+        modules: [
+            path.resolve(__dirname, 'src'),
+            path.resolve(__dirname, 'node_modules'),
+        ],
+        extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     },
 };
