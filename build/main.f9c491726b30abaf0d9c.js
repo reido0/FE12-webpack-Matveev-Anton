@@ -9,6 +9,27 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/test */ \"./src/modules/test.js\");\n/* harmony import */ var _modules_test__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_test__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _styles_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/index.scss */ \"./src/styles/index.scss\");\n\n\n\n//# sourceURL=webpack://fe12-webpack-matveev-anton/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/test.js":
+/*!*****************************!*\
+  !*** ./src/modules/test.js ***!
+  \*****************************/
+/***/ (() => {
+
+eval("function component() {\n  var element = document.createElement('div'); // Lodash, currently included via a script, is required for this line to work\n\n  element.innerHTML = _.join(['Hello', 'webpack'], ' ');\n  return element;\n}\n\ndocument.body.appendChild(component());\n\n//# sourceURL=webpack://fe12-webpack-matveev-anton/./src/modules/test.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/index.scss":
 /*!************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/index.scss ***!
@@ -105,27 +126,6 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(style, options, obj) {\n  
 
 "use strict";
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\n  if (style.styleSheet) {\n    style.styleSheet.cssText = css;\n  } else {\n    while (style.firstChild) {\n      style.removeChild(style.firstChild);\n    }\n\n    style.appendChild(document.createTextNode(css));\n  }\n}\n\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://fe12-webpack-matveev-anton/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/test */ \"./src/modules/test.js\");\n/* harmony import */ var _modules_test__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_test__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _styles_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/index.scss */ \"./src/styles/index.scss\");\n\n\n\n\n\n//# sourceURL=webpack://fe12-webpack-matveev-anton/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/modules/test.js":
-/*!*****************************!*\
-  !*** ./src/modules/test.js ***!
-  \*****************************/
-/***/ (() => {
-
-eval("function component() {\n    const element = document.createElement('div');\n\n    // Lodash, currently included via a script, is required for this line to work\n    element.innerHTML = _.join(['Hello', 'webpack'], ' ');\n\n    return element;\n}\n\ndocument.body.appendChild(component());\n\n//# sourceURL=webpack://fe12-webpack-matveev-anton/./src/modules/test.js?");
 
 /***/ })
 

@@ -10,7 +10,11 @@ module.exports = {
         filename: '[name].[contenthash].js',
         clean: true,
     },
-
+    devServer: {
+        port: 3000,
+        hot: true,
+        historyApiFallback: { index: '/' }
+    },
     plugins: [new HtmlWebpackPlugin({
         template: './public/index.html',
         filename: './index.html',
@@ -28,6 +32,11 @@ module.exports = {
                     // Compiles Sass to CSS
                     "sass-loader",
                 ],
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
             },
         ],
     },
