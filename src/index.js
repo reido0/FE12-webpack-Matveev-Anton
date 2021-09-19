@@ -6,5 +6,5 @@ import ReactDOM from "react-dom";
 
 import CardHolder from "./Components/CardHolder/CardHolder";
 
-ReactDOM.render(<CardHolder />, getElementById("root"));
+ReactDOM.render(<CardHolder />, document.getElementById("root"));
 
