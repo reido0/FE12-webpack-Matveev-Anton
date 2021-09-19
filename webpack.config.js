@@ -6,7 +6,6 @@ module.exports = {
     entry: './src/index.js',
     output: {
         publicPath: '/',
-        filename: 'main.js',
         path: path.resolve(__dirname, 'build'),
         filename: '[name].[contenthash].js',
         clean: true,
@@ -16,10 +15,11 @@ module.exports = {
         hot: true,
         historyApiFallback: { index: '/' }
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: './public/index.html',
-        filename: './index.html',
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+            filename: './index.html',
+        })],
 
     module: {
         rules: [

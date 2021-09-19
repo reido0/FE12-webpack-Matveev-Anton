@@ -8,7 +8,7 @@ class Card extends React.Component {
     render() {
         return (
             <div>
-                {`Tsk ${this.props.taskname}, is ${this.props.isDone ? "done" : "not done"}`}
+                {`Task ${this.props.taskName}, is ${this.props.isDone ? 'done' : 'not done'}`};
             </div>
         )
     }
