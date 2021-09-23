@@ -9,9 +9,6 @@ class Card extends React.Component {
 
     render() {
         return (
-            // <div>
-            //     {`Task ${this.props.taskName}, is ${this.props.isDone ? 'done' : 'not done'}`};
-            // </div>
             <div className="card-item marker-white">
                 <button className="btn-card btn-card-edit">
                     <i className="fas fa-pencil-alt"></i>
