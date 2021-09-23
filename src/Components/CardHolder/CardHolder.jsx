@@ -11,7 +11,7 @@ class CardHolder extends React.Component {
 
     addTask = () => {
         let newTasklist = [...this.state.taskList];
-        newTasklist.push({ taskName: `task ${this.state.taskList}`, isDone: false });
+        newTasklist.push({ taskName: `task ${this.state.taskList.length}`, isDone: false });
         this.setState({ taskList: newTasklist });
     }
 
@@ -21,23 +21,31 @@ class CardHolder extends React.Component {
         this.setState({ taskList: newTaskList });
     }
 
+
     render() {
         return (
             <div>
-                <div>
+                <div className="container board-todo">
+                    <div className="board-title">
+                        <textarea>ToDo</textarea>
+                        <button className="btn-board" id="btn-board-editing">
+                            <i className="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
                     {this.state.taskList.map((task, index) => {
                         return (
-                            <div>
+                            <div className="state" id="state-todo">
                                 <Card taskName={task.taskName} isDone={task.isDone} />
                                 <button onClick={this.changeName(index)}>change name</button>
                             </div>
                         )
                     })}
+                    <button className="button-add-card" onClick={this.addTask} id="openModalBtnTodo">+ Добавить карточку</button>
                 </div>
-                <button onClick={this.addTask}>add task</button>
             </div>
         )
     }
 }
 
 export default CardHolder
+

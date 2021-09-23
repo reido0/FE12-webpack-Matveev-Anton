@@ -1,0 +1,114 @@
+/* Стили доски */
+
+.section-board {
+    margin: auto;
+    padding: 0 20px;
+    max-width: 1480px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.board-todo,
+.board-in-progress,
+.board-done {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 20px;
+    padding: 16px;
+    min-width: 304px;
+    max-width: 304px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    border-radius: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.state {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.btn-board {
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-board i {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s;
+}
+
+.btn-board i:hover {
+    color: #000;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-board i:active {
+    border-radius: 4px;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+textarea,
+input {
+    cursor: pointer;
+    flex-grow: 1;
+    padding: 2px 8px 0px;
+    background-color: transparent;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-16);
+    line-height: 24px;
+    color: var(--color-text-black);
+    overflow: hidden;
+    overflow-wrap: break-word;
+    height: 28px;
+    resize: none;
+}
+
+textarea:focus {
+    /* outline: none; */
+    outline-color: #303030;
+}
+
+i {
+    color: #999;
+}
+
+.board-title {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.board-in-progress-amount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.board-in-progress-amount span {
+    margin: 0px 2px;
+    font-weight: 500;
+    font-size: var(--font-12);
+    line-height: 18px;
+    color: var(--color-text-black);
+}

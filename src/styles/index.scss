@@ -1,4 +1,67 @@
-body {
-    background-color: #d63939;
-    font-size: 30px;
+/* Общие для всего приложения стили */
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-section: #bebebe;
+    --bg-container: #eeeeee;
+    --bg-item: #fff;
+    --bg-hover: #3570ce;
+    --color-marker-green: #22b92f;
+    --color-card-yellow: #fffdda;
+    --color-card-green: #e5ffda;
+    --color-card-red: #ffdada;
+    --color-marker-red: #e22b2b;
+    --color-border: #000;
+    --color-text-black: #221c1d;
+    --color-text-gray: #666;
+    --font-11: 11px;
+    --font-12: 12px;
+    --font-16: 16px;
+}
+
+.marker-red {
+    background-color: var(--color-card-red);
+}
+
+.marker-green {
+    background-color: var(--color-card-green);
+}
+
+.marker-yellow {
+    background-color: var(--color-card-yellow);
+}
+
+.marker-white {
+    background-color: var(--bg-item);
+}
+
+.board-in-progress-amount span,
+.card-item,
+.add-time,
+.button-add-card,
+.modal-title,
+.modal-btn-save,
+.modal-btn-cancel,
+.modal-body {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+main {
+    background-image: url("/src/assets/img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
 }
