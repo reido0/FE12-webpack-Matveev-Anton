@@ -9,15 +9,15 @@ class Card extends React.Component {
 
     render() {
         return (
-            <div className="card-item marker-white">
-                <button className="btn-card btn-card-edit">
-                    <i className="fas fa-pencil-alt"></i>
+            <div className={"card-item marker-white"}>
+                <button className={"btn-card btn-card-edit"}>
+                    <i className={"fas fa-pencil-alt"}></i>
                 </button>
                 <p>{`Task ${this.props.taskName}, is ${this.props.isDone ? 'done' : 'not done'}`}</p>
-                <p className="finish-date">dateString</p>
-                <div className="avatar">
-                    <p className="name">userId</p>
-                    <div className="avatar-img">
+                <p className={"finish-date"}>dateString</p>
+                <div className={"avatar"}>
+                    <p className={"name"}>userId</p>
+                    <div className={"avatar-img"}>
                     </div>
                 </div>
             </div>
