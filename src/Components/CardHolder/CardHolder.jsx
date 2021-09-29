@@ -91,6 +91,7 @@ class CardHolder extends React.PureComponent {
 
 const CardHolder = (props) => {
     const [taskList, setTaskList] = useState([]);
+    const [newTaskName, setNewTaskName] = useState('');
 
     useEffect(() => {
         console.log('useEffect');
@@ -107,9 +108,7 @@ const CardHolder = (props) => {
 
     const addTask = () => {
         let newTasklist = [...taskList];
-        // let userCardName = document.getElementsByClassName('add-card-textarea');
-        // userCardName.value = '';
-        newTasklist.push({ taskName: taskList.length, isDone: false });
+        newTasklist.push({ taskName: newTaskName, isDone: false });
         setTaskList(newTasklist);
     }
 
@@ -139,7 +138,7 @@ const CardHolder = (props) => {
         let newTaskList = [...taskList];
         newTaskList.splice(index, 1);
         setTaskList(newTaskList);
-    }, []);
+    }, [taskList]);
 
     const taskDone = useCallback((index) => () => {
         let newTaskList = [...taskList];
@@ -167,7 +166,7 @@ const CardHolder = (props) => {
                         </div>
                     )
                 })}
-                <textarea className={"add-card-textarea"}></textarea>
+                <textarea className={"add-card-textarea"} onChange={(event) => { setNewTaskName(event.target.value) }} value={newTaskName}></textarea>
                 <button className={"button-add-card"} onClick={addTask} id={"openModalBtnTodo"}>+ Add new Card</button>
             </div>
         </div>
