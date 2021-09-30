@@ -1,4 +1,3 @@
-
 import React, { useEffect, memo } from "react";
 /*
 // Class component
@@ -52,7 +51,7 @@ const Card = (props) => {
                 <i className={"fas fa-pencil-alt"}></i>
             </button>
             <p>{`Task ${props.taskName}, is ${props.isDone ? 'done' : 'not done'}`}</p>
-            <p className={"finish-date"}>Date</p>
+            <p className={"finish-date"}>Date: {new Date().toDateString()}</p>
             <div className={"avatar"}>
                 <p className={"name"}>userId</p>
                 <div className={"avatar-img"}>
