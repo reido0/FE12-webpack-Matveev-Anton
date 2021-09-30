@@ -1,6 +1,5 @@
-import React, { useEffect, memo, useRef, useState } from "react";
+import React, { memo, useState } from "react";
 import ModalWindow from "./Components/ModalWindow";
-// import CardHolder from "./Components/CardHolder/CardHolder";
 
 const GlobalModalProvider = (props) => {
     const [modalContent, setModalContent] = useState(false);

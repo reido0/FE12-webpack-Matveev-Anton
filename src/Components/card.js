@@ -47,11 +47,12 @@ const Card = (props) => {
 
     return (
         <div className={"card-item marker-white"}>
-            <button className={"btn-card btn-card-edit"}>
+            <button className={"btn-card btn-card-edit"} onClick={() => { props.setModalContent('Кнопка "Pencil" TEST') }}>
                 <i className={"fas fa-pencil-alt"}></i>
             </button>
             <p>{`Task ${props.taskName}, is ${props.isDone ? 'done' : 'not done'}`}</p>
             <p className={"finish-date"}>Date: {new Date().toDateString()}</p>
+            <button className={"card-btn"} onClick={() => { props.setModalContent('Кнопка "Modal" TEST') }} >Modal</button>
             <div className={"avatar"}>
                 <p className={"name"}>userId</p>
                 <div className={"avatar-img"}>

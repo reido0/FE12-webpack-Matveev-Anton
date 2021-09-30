@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Card from "../card";
+import ModalWindow from "../ModalWindow";
 
 /*
 import React from "react";
@@ -161,7 +162,7 @@ const CardHolder = (props) => {
                     return (
                         <div key={task.taskName}>
                             <div className={"state"} id={"state-todo"}>
-                                <Card taskName={task.taskName} isDone={task.isDone} index={index} changeName={changeName} moveUp={moveUp} moveDown={moveDown} deleteTask={deleteTask} taskDone={taskDone} />
+                                <Card taskName={task.taskName} isDone={task.isDone} index={index} changeName={changeName} moveUp={moveUp} moveDown={moveDown} deleteTask={deleteTask} taskDone={taskDone} setModalContent={props.setModalContent} />
                             </div>
                         </div>
                     )

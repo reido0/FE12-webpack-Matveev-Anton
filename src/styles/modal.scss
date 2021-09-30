@@ -1,0 +1,187 @@
+.modal {
+    // min-width: 300px;
+    // min-height: 300px;
+    // position: absolute;
+    // top: 15%;
+    // left: 15%;
+    // z-index: 100;
+    // background-color: #84c8ff;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    position: fixed;
+    /* фиксированное положение */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* цвет фона */
+    z-index: 1;
+    /* opacity: 1; */
+    /* по умолчанию модальное окно прозрачно */
+    /* transition: opacity 400ms ease-in; */
+    /* анимация перехода */
+    /* pointer-events: none; */
+    /* элемент невидим для событий мыши */
+}
+
+/* при отображении модального окна */
+/* .modal:target {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
+} */
+
+/* ширина модального окна и его отступы от экрана */
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin: 30px auto;
+    }
+}
+
+/* свойства для блока, содержащего контент модального окна */
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    outline: 0;
+}
+
+@media (min-width: 768px) {
+    .modal-content {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* свойства для заголовка модального окна */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+}
+
+.modal-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* свойства для кнопки "Закрыть" */
+.close {
+    float: right;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+/* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+.close:focus,
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+/* свойства для блока, содержащего основное содержимое окна */
+.modal-dialog {
+    min-width: 250px;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 15px;
+    height: 200px;
+    // width: 100%;
+    overflow: auto;
+    outline: none;
+    margin: 0 10px 0 10px;
+}
+
+.modal-user {
+    font-size: 16px;
+    font-weight: 500;
+    /* height: 15px;
+    width: 15px; */
+}
+
+.modal-btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.modal-btn-save,
+.modal-btn-cancel,
+.modal-btn-delete {
+    height: 50px;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.185);
+    border-radius: 4px;
+    margin: 20px;
+    font-weight: 500;
+    font-size: var(--font-12);
+    line-height: 18px;
+    transition: 0.1s;
+}
+
+.modal-btn-cancel:hover {
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    background-color: rgba(146, 146, 146, 0.301);
+    color: var(--color-text-black);
+    transition: 0.1s;
+}
+
+.modal-btn-cancel:active {
+    border-radius: 4px;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.modal-btn-save:hover {
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    background-color: rgba(146, 146, 146, 0.301);
+    color: var(--color-text-black);
+    transition: 0.1s;
+}
+
+.modal-btn-save:active {
+    border-radius: 4px;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.modal-btn-delete:hover {
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    background-color: rgba(146, 146, 146, 0.301);
+    color: var(--color-text-black);
+    transition: 0.1s;
+}
+
+.modal-btn-delete:active {
+    border-radius: 4px;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}

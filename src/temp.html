@@ -1,0 +1,25 @@
+<!-- Modal Window -->
+
+<div id="openModalwindow" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input class="modal-title" id="addModalTitle" placeholder="Название задачи" />
+
+                <span title="Close" id="close" class="close">×</span>
+            </div>
+            <textarea class="modal-body" id="addModalDescription" type="text" name="Task" placeholder="Описание задачи"
+                cols="4" maxlength="500" required></textarea>
+            <select class="modal-user" id="addModalUserId">
+                <option value="0">User 0</option>
+                <option value="1">User 1</option>
+                <option value="2">User 3</option>
+            </select>
+            <div class="modal-btn-wrapper">
+                <button class="modal-btn-delete" id="addModalDelete">Удалить</button>
+                <button class="modal-btn-save" id="addModalSave">Сохранить</button>
+                <button class="modal-btn-cancel" id="btn-cancel">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
