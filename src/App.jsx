@@ -1,5 +1,5 @@
 import React from "react";
-import CardHolder from "./CardHolder/CardHolder";
+import CardHolder from "./Components/CardHolder/CardHolder";
 import GlobalModalProvider from "./GlobalModalProvider";
 
 const App = (props) => {
