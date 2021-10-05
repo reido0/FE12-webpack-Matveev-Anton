@@ -1,10 +1,11 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 
 const ModalWindow = (props) => {
+    // const setModalContext = useContext(ModalContext);
+    // onClick={() => { setModalContent() }}
+
     return (
-        // <div className={"modal"}>
-        //     {props.children}
-        // </div>
+
         <div id="openModalwindow" className={"modal"}>
             <div className="modal-dialog">
                 <div className="modal-content">
