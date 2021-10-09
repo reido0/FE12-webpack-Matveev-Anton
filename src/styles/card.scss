@@ -51,6 +51,40 @@
     transition: 0.3s;
 }
 
+.card-taskname-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-taskname {
+    font-size: var(--font-11);
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.card-taskname-status {
+    font-size: var(--font-11);
+    color: rgba(226, 0, 0, 0.747);
+}
+
+.card-title-task,
+.card-title-discription,
+.card-title-username {
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+    font-size: var(--font-11);
+}
+
+.card-discription {
+    padding: 2px 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    font-size: var(--font-11);
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
 .finish-date {
     margin: 8px 0px;
     text-align: start;
@@ -60,8 +94,8 @@
     color: var(--color-text-gray);
 }
 
-.name {
-    margin-right: 8px;
+.card-username {
+    margin: 0 8px;
     font-weight: normal;
     font-size: var(--font-11);
     line-height: 16px;
@@ -97,7 +131,6 @@
 .card-btn {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.185);
-    // border: 1px solid #000;
     text-align: center;
     padding: 4px;
     border-radius: 4px;

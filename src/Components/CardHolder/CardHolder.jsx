@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import Card from "../card";
 import { ModalContext } from "../../GlobalModalProvider";
+import EditCardModal from "../modalContent/EditCardModal";
+import AddCardModal from "../modalContent/AddCardModal";
 
 
 //Functional Component
@@ -8,6 +10,8 @@ import { ModalContext } from "../../GlobalModalProvider";
 const CardHolder = (props) => {
     const [taskList, setTaskList] = useState([]);
     const [newTaskName, setNewTaskName] = useState('');
+    const [newUserName, setNewUserName] = useState('');
+    const [newTaskDescription, setNewTaskDescription] = useState('');
     const setModalContext = useContext(ModalContext);
 
     useEffect(() => {
@@ -15,18 +19,49 @@ const CardHolder = (props) => {
 
         new Promise((resolve, reject) => {
             resolve([
-                { taskName: "0", isDone: false },
-                { taskName: "1", isDone: false }])
+                {
+                    taskName: '0',
+                    isDone: false,
+                    taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
+                    userName: 'Xeon',
+                    state: 0
+                },
+                {
+                    taskName: '1',
+                    isDone: false,
+                    taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
+                    userName: 'Xeon',
+                    state: 1
+                },
+                {
+                    taskName: '2',
+                    isDone: true,
+                    taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
+                    userName: 'Xeon',
+                    state: 2
+                },
+            ])
         }).then((data) => {
             setTaskList(data);
         })
 
     }, []);
 
-    const addTask = () => {
+    const addTask = (state) => {
         let newTasklist = [...taskList];
-        newTasklist.push({ taskName: newTaskName, isDone: false });
+        newTasklist.push(
+            {
+                taskName: newTaskName,
+                isDone: false,
+                taskDescription: newTaskDescription,
+                userName: newUserName,
+                state: state
+            }
+        );
         setTaskList(newTasklist);
+        setNewUserName('');
+        setNewTaskDescription('');
+
     }
 
     const changeName = (index) => () => {
@@ -69,22 +104,42 @@ const CardHolder = (props) => {
         <div>
             <div className={"container board-todo"}>
                 <div className={"board-title"}>
-                    <textarea>ToDo</textarea>
-                    <button className={"btn-board"} id={"btn-board-editing"}>
+                    <h2>ToDo</h2>
+                    <button className={"btn-board"}>
                         <i className={"fas fa-ellipsis-h"}></i>
                     </button>
                 </div>
                 {taskList.map((task, index) => {
-                    return (
-                        <div key={task.taskName}>
-                            <div className={"state"} id={"state-todo"}>
-                                <Card taskName={task.taskName} isDone={task.isDone} index={index} changeName={changeName} moveUp={moveUp} moveDown={moveDown} deleteTask={deleteTask} taskDone={taskDone} setModalContent={setModalContext} />
+                    if (task.state === 0)
+                        return (
+                            <div key={task.taskName}>
+                                <div className={"state"}>
+                                    <Card
+                                        taskName={task.taskName}
+                                        isDone={task.isDone}
+                                        index={index}
+                                        changeName={changeName}
+                                        moveUp={moveUp}
+                                        moveDown={moveDown}
+                                        deleteTask={deleteTask}
+                                        taskDone={taskDone}
+                                        setModalContent={setModalContext}
+                                        taskDescription={task.taskDescription}
+                                        userName={task.userName}
+                                        state={task.state}
+
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    )
+                        )
                 })}
-                <textarea className={"add-card-textarea"} onChange={(event) => { setNewTaskName(event.target.value) }} value={newTaskName}></textarea>
-                <button className={"button-add-card"} onClick={addTask} id={"openModalBtnTodo"}>+ Add new Card</button>
+                {/* <input className={"add-card-textarea"}
+                    onChange={(event) => { setNewTaskName(event.target.value) }} value={newTaskName}
+                /> */}
+                {/* <button className={"button-add-card"} onClick={() => { addTask(0) }}>+ Add new Card</button> */}
+                <button className={"button-add-card"}
+                    onClick={() => { setModalContext(<AddCardModal addTask={addTask} />) }}
+                >+ Add new Card</button>
             </div>
         </div>
     )
