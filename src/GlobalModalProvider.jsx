@@ -8,12 +8,11 @@ const GlobalModalProvider = (props) => {
 
     return (
         <React.Fragment>
-            {modalContent &&
-                <ModalWindow>
-                    {modalContent}
-                </ModalWindow>}
-            {/* {props.renderProps(setModalContent)} */}
             <ModalContext.Provider value={setModalContent}>
+                {modalContent &&
+                    <ModalWindow>
+                        {modalContent}
+                    </ModalWindow>}
                 {props.children}
             </ModalContext.Provider>
         </React.Fragment>

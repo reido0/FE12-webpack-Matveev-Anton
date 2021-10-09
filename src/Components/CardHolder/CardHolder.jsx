@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import Card from "../card";
-// import ModalWindow from "../ModalWindow";
 import { ModalContext } from "../../GlobalModalProvider";
 
 
