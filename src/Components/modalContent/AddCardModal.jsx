@@ -22,7 +22,8 @@ const AddCardModal = (props) => {
             </div>
             <textarea
                 className="modal-description"
-                type="text" name="Task"
+                type="text"
+                name="Task"
                 value={newTaskDescription}
                 onChange={(event) => { setNewTaskDescription(event.target.value) }}
                 placeholder="Description"
@@ -34,7 +35,7 @@ const AddCardModal = (props) => {
             <div className="modal-btn-wrapper">
                 {/* <button className="modal-btn-delete" >Удалить</button> */}
                 <button className="modal-btn-save"
-                    onClick={() => { props.addTask(newTaskName, newTaskDescription, TASK_STATUS.toDo); setModalContext() }}>Save</button>
+                    onClick={() => { props.addTask(newTaskName, newTaskDescription, props.taskStatus); setModalContext() }}>Save</button>
                 <button className="modal-btn-cancel" onClick={() => { setModalContext() }}>Cancel</button>
             </div>
         </React.Fragment>

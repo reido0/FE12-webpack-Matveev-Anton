@@ -1,19 +1,13 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
-import Card from "../card";
-import { ModalContext } from "../../GlobalModalProvider";
-import EditCardModal from "../modalContent/EditCardModal";
-import AddCardModal from "../modalContent/AddCardModal";
-import { TASK_STATUS } from "../../constants/taskStatus";
+import React, { useState, useEffect, useContext } from "react";
+import Card from "../Components/Card";
+import CardHolder from "../Components/CardHolder/CardHolder";
+import { TASK_STATUS } from "../constants/taskStatus";
 
-
-//Functional Component
-
-const CardHolder = (props) => {
+const MainScene = (props) => {
     const [taskList, setTaskList] = useState([]);
     const [newTaskName, setNewTaskName] = useState('');
     const [newUserName, setNewUserName] = useState('');
     const [newTaskDescription, setNewTaskDescription] = useState('');
-    const setModalContext = useContext(ModalContext);
 
     useEffect(() => {
         console.log('useEffect');
@@ -101,48 +95,34 @@ const CardHolder = (props) => {
         setTaskList(newTaskList);
     }, [taskList]);
 
-    console.log("CardHolder Render");
-
     return (
-        <div>
-            <div className={"container board-todo"}>
-                <div className={"board-title"}>
-                    <h2>ToDo</h2>
-                    <button className={"btn-board"}>
-                        <i className={"fas fa-ellipsis-h"}></i>
-                    </button>
-                </div>
-                {taskList.map((task, index) => {
-                    if (task.state === TASK_STATUS.toDo)
-                        return (
-                            <div key={task.taskName}>
-                                <div className={"state"}>
-                                    <Card
-                                        taskName={task.taskName}
-                                        isDone={task.isDone}
-                                        index={index}
-                                        changeName={changeName}
-                                        moveUp={moveUp}
-                                        moveDown={moveDown}
-                                        deleteTask={deleteTask}
-                                        taskDone={taskDone}
-                                        setModalContent={setModalContext}
-                                        taskDescription={task.taskDescription}
-                                        userName={task.userName}
-                                        state={task.state}
-
-                                    />
-                                </div>
+        <CardHolder title={'To Do'} addTask={addTask} taskStatus={TASK_STATUS.toDo}>
+            {taskList.map((task, index) => {
+                if (task.state === TASK_STATUS.toDo) {
+                    return (
+                        <div key={task.taskName}>
+                            <div className={"state"}>
+                                <Card
+                                    taskName={task.taskName}
+                                    isDone={task.isDone}
+                                    index={index}
+                                    changeName={changeName}
+                                    moveUp={moveUp}
+                                    moveDown={moveDown}
+                                    deleteTask={deleteTask}
+                                    taskDone={taskDone}
+                                    setModalContent={setModalContext}
+                                    taskDescription={task.taskDescription}
+                                    userName={task.userName}
+                                    state={task.state}
+                                />
                             </div>
-                        )
-                })}
-                {props.taskStatus !== TASK_STATUS.done &&
-                    <button className={"button-add-card"}
-                        onClick={() => { setModalContext(<AddCardModal addTask={addTask} taskStatus={TASK_STATUS.toDo} />) }}>+ Add new Card</button>
+                        </div>
+                    )
                 }
-            </div>
-        </div>
+            })}
+        </CardHolder>
     )
-};
+}
 
-export default CardHolder;
+export default MainScene;

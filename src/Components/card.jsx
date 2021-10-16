@@ -23,7 +23,7 @@ const Card = (props) => {
             </button>
             <p className={"card-title-task"}>Task:</p>
             <div className={"card-taskname-wrapper"}>
-                <p className={"card-taskname"}>{`Task ${props.taskName}`}</p>
+                <p className={"card-taskname"}>{`${props.taskName}`}</p>
                 <p className={"card-taskname-status"}>{`is ${props.isDone ? 'done' : 'not done'}`}</p>
             </div>
 
