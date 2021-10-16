@@ -74,12 +74,12 @@
     border-bottom: 1px solid #eceeef;
 }
 
-.modal-title {
+.modal-taskname {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 1.5;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 /* свойства для кнопки "Закрыть" */
@@ -109,12 +109,13 @@
     min-width: 250px;
 }
 
-.modal-body {
+.modal-description {
     position: relative;
     flex: 1 1 auto;
     padding: 15px;
     height: 200px;
-    // width: 100%;
+    font-size: 14px;
+    font-weight: 400;
     overflow: auto;
     outline: none;
     margin: 0 10px 0 10px;
@@ -141,8 +142,8 @@
     background-color: rgba(0, 0, 0, 0.185);
     border-radius: 4px;
     margin: 20px;
-    font-weight: 500;
-    font-size: var(--font-12);
+    font-weight: 400;
+    font-size: 14px;
     line-height: 18px;
     transition: 0.1s;
 }

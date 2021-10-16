@@ -29,7 +29,6 @@ const Card = (props) => {
             <p className={"card-title-discription"}>Discription:</p>
             <p className={"card-discription"}>{`${props.taskDescription}`}</p>
             <p className={"finish-date"}>Date: {new Date().toDateString()}</p>
-            <button className={"card-btn"} onClick={() => { props.setModalContent(<AddCardModal />) }} >Modal</button>
             <div className={"avatar"}>
                 <p className={"card-title-username"}>User name:</p>
                 <p className={"card-username"}>{`${props.userName}`}</p>

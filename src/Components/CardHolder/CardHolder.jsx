@@ -24,21 +24,21 @@ const CardHolder = (props) => {
                     isDone: false,
                     taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
                     userName: 'Xeon',
-                    state: 0
+                    state: 'ToDo'
                 },
                 {
                     taskName: '1',
                     isDone: false,
                     taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
                     userName: 'Xeon',
-                    state: 1
+                    state: 'InProgress'
                 },
                 {
                     taskName: '2',
                     isDone: true,
                     taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
                     userName: 'Xeon',
-                    state: 2
+                    state: 'Done'
                 },
             ])
         }).then((data) => {
@@ -47,7 +47,7 @@ const CardHolder = (props) => {
 
     }, []);
 
-    const addTask = (state) => {
+    const addTask = (newTaskName, newTaskDescription, state) => {
         let newTasklist = [...taskList];
         newTasklist.push(
             {
@@ -110,7 +110,7 @@ const CardHolder = (props) => {
                     </button>
                 </div>
                 {taskList.map((task, index) => {
-                    if (task.state === 0)
+                    if (task.state === 'ToDo')
                         return (
                             <div key={task.taskName}>
                                 <div className={"state"}>
