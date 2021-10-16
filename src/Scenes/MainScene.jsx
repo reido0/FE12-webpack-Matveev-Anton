@@ -114,8 +114,8 @@ const MainScene = (props) => {
                                     setModalContent={setModalContext}
                                     taskDescription={task.taskDescription}
                                     userName={task.userName}
-                                    state={task.state}
-                                />
+                                    state={task.state}>
+                                </Card>
                             </div>
                         </div>
                     )
