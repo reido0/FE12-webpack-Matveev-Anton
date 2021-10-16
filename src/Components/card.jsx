@@ -1,4 +1,5 @@
 import React, { useEffect, memo } from "react";
+import { TASK_STATUS } from "../constants/taskStatus";
 import AddCardModal from "./modalContent/AddCardModal";
 import EditCardModal from "./modalContent/EditCardModal";
 
@@ -39,7 +40,7 @@ const Card = (props) => {
                 <button className={"card-btn"} onClick={props.changeName(props.index)}>ChangeName</button>
                 <button className={"card-btn"} onClick={props.moveUp(props.index)}>MoveUp</button>
                 <button className={"card-btn"} onClick={props.moveDown(props.index)}>MoveDown</button>
-                {props.state !== 2 &&
+                {props.state !== TASK_STATUS.done &&
                     <button className={"card-btn"} onClick={props.taskDone(props.index)}>Done</button>}
                 <button className={"card-btn"} onClick={props.deleteTask(props.index)}>Delete</button>
             </div>

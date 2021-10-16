@@ -1,5 +1,6 @@
 import React, { memo, useContext, useState } from "react";
 import { ModalContext } from "../../GlobalModalProvider";
+import { TASK_STATUS } from "../../constants/taskStatus";
 
 const AddCardModal = (props) => {
     const [newTaskName, setNewTaskName] = useState('');
@@ -33,7 +34,7 @@ const AddCardModal = (props) => {
             <div className="modal-btn-wrapper">
                 {/* <button className="modal-btn-delete" >Удалить</button> */}
                 <button className="modal-btn-save"
-                    onClick={() => { props.addTask(newTaskName, newTaskDescription, 'ToDo'); setModalContext() }}>Save</button>
+                    onClick={() => { props.addTask(newTaskName, newTaskDescription, TASK_STATUS.toDo); setModalContext() }}>Save</button>
                 <button className="modal-btn-cancel" onClick={() => { setModalContext() }}>Cancel</button>
             </div>
         </React.Fragment>

@@ -3,6 +3,7 @@ import Card from "../card";
 import { ModalContext } from "../../GlobalModalProvider";
 import EditCardModal from "../modalContent/EditCardModal";
 import AddCardModal from "../modalContent/AddCardModal";
+import { TASK_STATUS } from "../../constants/taskStatus";
 
 
 //Functional Component
@@ -24,21 +25,21 @@ const CardHolder = (props) => {
                     isDone: false,
                     taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
                     userName: 'Xeon',
-                    state: 'ToDo'
+                    state: TASK_STATUS.toDo
                 },
                 {
                     taskName: '1',
                     isDone: false,
                     taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
                     userName: 'Xeon',
-                    state: 'InProgress'
+                    state: TASK_STATUS.inProgress
                 },
                 {
                     taskName: '2',
                     isDone: true,
                     taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
                     userName: 'Xeon',
-                    state: 'Done'
+                    state: TASK_STATUS.done
                 },
             ])
         }).then((data) => {
@@ -48,27 +49,28 @@ const CardHolder = (props) => {
     }, []);
 
     const addTask = (newTaskName, newTaskDescription, state) => {
-        let newTasklist = [...taskList];
-        newTasklist.push(
-            {
-                taskName: newTaskName,
-                isDone: false,
-                taskDescription: newTaskDescription,
-                userName: newUserName,
-                state: state
-            }
-        );
-        setTaskList(newTasklist);
-        setNewUserName('');
-        setNewTaskDescription('');
-
-    }
+        if (newTaskName !== '') {
+            let newTasklist = [...taskList];
+            newTasklist.push(
+                {
+                    taskName: newTaskName,
+                    isDone: false,
+                    taskDescription: newTaskDescription,
+                    userName: newUserName,
+                    state: state
+                }
+            )
+            setTaskList(newTasklist);
+            setNewUserName('');
+            setNewTaskDescription('');
+        }
+    };
 
     const changeName = (index) => () => {
         let newTaskList = [...taskList];
         newTaskList[index].taskName = 'Changed Name';
         setTaskList(newTaskList);
-    }
+    };
 
     const moveUp = (index) => () => {
         let newTaskList = [...taskList];
@@ -76,7 +78,7 @@ const CardHolder = (props) => {
             return x == newTaskList[index] ? -1 : y == newTaskList[index] ? 1 : 0;
         });
         setTaskList(newTaskList);
-    }
+    };
 
     const moveDown = (index) => () => {
         let newTaskList = [...taskList];
@@ -84,7 +86,7 @@ const CardHolder = (props) => {
             return y == newTaskList[index] ? -1 : x == newTaskList[index] ? 1 : 0;
         });
         setTaskList(newTaskList);
-    }
+    };
 
     const deleteTask = useCallback((index) => () => {
         let newTaskList = [...taskList];
@@ -110,7 +112,7 @@ const CardHolder = (props) => {
                     </button>
                 </div>
                 {taskList.map((task, index) => {
-                    if (task.state === 'ToDo')
+                    if (task.state === TASK_STATUS.toDo)
                         return (
                             <div key={task.taskName}>
                                 <div className={"state"}>
@@ -133,10 +135,6 @@ const CardHolder = (props) => {
                             </div>
                         )
                 })}
-                {/* <input className={"add-card-textarea"}
-                    onChange={(event) => { setNewTaskName(event.target.value) }} value={newTaskName}
-                /> */}
-                {/* <button className={"button-add-card"} onClick={() => { addTask(0) }}>+ Add new Card</button> */}
                 <button className={"button-add-card"}
                     onClick={() => { setModalContext(<AddCardModal addTask={addTask} />) }}
                 >+ Add new Card</button>
