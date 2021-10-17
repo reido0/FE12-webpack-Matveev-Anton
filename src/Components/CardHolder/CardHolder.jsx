@@ -1,38 +1,11 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
-import Card from "../card";
+import React, { useContext } from "react";
 import { ModalContext } from "../../GlobalModalProvider";
-import EditCardModal from "../modalContent/EditCardModal";
 import AddCardModal from "../modalContent/AddCardModal";
 import { TASK_STATUS } from "../../constants/taskStatus";
 
-
-
-//Functional Component
-
 const CardHolder = (props) => {
-    const [taskList, setTaskList] = useState([]);
-    const [newTaskName, setNewTaskName] = useState('');
-    const [newUserName, setNewUserName] = useState('');
-    const [newTaskDescription, setNewTaskDescription] = useState('');
+    console.log('cardholder');
     const setModalContext = useContext(ModalContext);
-
-    const addTask = (newTaskName, newTaskDescription, state) => {
-        if (newTaskName !== '') {
-            let newTasklist = [...taskList];
-            newTasklist.push(
-                {
-                    taskName: newTaskName,
-                    isDone: false,
-                    taskDescription: newTaskDescription,
-                    userName: newUserName,
-                    state: state
-                }
-            )
-            setTaskList(newTasklist);
-            setNewUserName('');
-            setNewTaskDescription('');
-        }
-    };
 
     return (
         <React.Fragment>
@@ -45,19 +18,22 @@ const CardHolder = (props) => {
                         </button>
                     </div>
                     {props.children}
-                    {props.taskStatus !== TASK_STATUS.done &&
+                    {props.taskStatus === TASK_STATUS.toDo && (
                         <button className={"button-add-card"}
                             onClick={() => {
                                 setModalContext(
-                                    <AddCardModal addTask={addTask} taskStatus={props.taskStatus} />
+                                    <AddCardModal
+                                        addTask={props.addTask}
+                                        taskStatus={TASK_STATUS.toDo}
+                                    />
                                 )
                             }}
                         >+ Add new Card</button>
-                    }
+                    )}
                 </div>
             </div>
         </React.Fragment>
     )
 };
 
-export default CardHolder;
+export default React.memo(CardHolder);

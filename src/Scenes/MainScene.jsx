@@ -1,128 +1,142 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import Card from "../Components/Card";
 import CardHolder from "../Components/CardHolder/CardHolder";
-import { TASK_STATUS } from "../constants/taskStatus";
+import {
+    COLUMN_VARIANTS,
+    DEFAULT_DATA,
+    TASK_STATUS,
+} from "../constants";
+import { ModalContext } from "../GlobalModalProvider";
 
 const MainScene = (props) => {
-    const [taskList, setTaskList] = useState([]);
-    const [newTaskName, setNewTaskName] = useState('');
-    const [newUserName, setNewUserName] = useState('');
-    const [newTaskDescription, setNewTaskDescription] = useState('');
+    console.log('mainscene');
+    const [taskList, setTaskList] = useState(DEFAULT_DATA);
+    const setModalContext = useContext(ModalContext);
 
-    useEffect(() => {
-        console.log('useEffect');
+    const addTask = useCallback((newTaskName, newTaskDescription, state) => {
+        if (Boolean(newTaskName) && Boolean(newTaskDescription)) {
+            const newTasklist = [...taskList];
 
-        new Promise((resolve, reject) => {
-            resolve([
-                {
-                    taskName: '0',
-                    isDone: false,
-                    taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
-                    userName: 'Xeon',
-                    state: TASK_STATUS.toDo
-                },
-                {
-                    taskName: '1',
-                    isDone: false,
-                    taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
-                    userName: 'Xeon',
-                    state: TASK_STATUS.inProgress
-                },
-                {
-                    taskName: '2',
-                    isDone: true,
-                    taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
-                    userName: 'Xeon',
-                    state: TASK_STATUS.done
-                },
-            ])
-        }).then((data) => {
-            setTaskList(data);
-        })
-
-    }, []);
-
-    const addTask = (newTaskName, newTaskDescription, state) => {
-        if (newTaskName !== '') {
-            let newTasklist = [...taskList];
             newTasklist.push(
                 {
                     taskName: newTaskName,
                     isDone: false,
                     taskDescription: newTaskDescription,
-                    userName: newUserName,
+                    userName: '',
                     state: state
                 }
             )
+            
             setTaskList(newTasklist);
-            setNewUserName('');
-            setNewTaskDescription('');
         }
-    };
+    }, [
+        setTaskList,
+        taskList,
+    ]);
 
-    const changeName = (index) => () => {
-        let newTaskList = [...taskList];
-        newTaskList[index].taskName = 'Changed Name';
-        setTaskList(newTaskList);
-    };
+    const editTask = useCallback((taskName, taskDescription) => {
+        if (Boolean(taskName) && Boolean(taskDescription)) {
+            const newTasklist = [...taskList];
+            const currentItem = newTasklist.find((item) => item.taskName === taskName);
 
-    const moveUp = (index) => () => {
-        let newTaskList = [...taskList];
-        newTaskList.sort(function (x, y) {
-            return x == newTaskList[index] ? -1 : y == newTaskList[index] ? 1 : 0;
-        });
-        setTaskList(newTaskList);
-    };
+            if (currentItem) {
+                currentItem.taskDescription = taskDescription;
 
-    const moveDown = (index) => () => {
-        let newTaskList = [...taskList];
-        newTaskList.sort(function (x, y) {
-            return y == newTaskList[index] ? -1 : x == newTaskList[index] ? 1 : 0;
-        });
+                setTaskList(newTasklist);
+            } else {
+                addTask(
+                    taskName,
+                    taskDescription,
+                    TASK_STATUS.toDo,
+                );
+            }
+        }
+    }, [
+        setTaskList,
+        taskList,
+        addTask,
+    ]);
+
+    const moveUp = useCallback((index) => () => {
+        const newTaskList = [...taskList];
+        const element = newTaskList[index];
+
+        newTaskList.splice(index, 1);
+        newTaskList.splice(index - 1, 0, element);
+
         setTaskList(newTaskList);
-    };
+    }, [
+        setTaskList,
+        taskList,
+    ]);
+
+    const moveDown = useCallback((index) => () => {
+        const newTaskList = [...taskList];
+        const element = newTaskList[index];
+
+        newTaskList.splice(index, 1);
+        newTaskList.splice(index += 1, 0, element);
+
+        setTaskList(newTaskList);
+    }, [
+        setTaskList,
+        taskList,
+    ]);
 
     const deleteTask = useCallback((index) => () => {
         let newTaskList = [...taskList];
         newTaskList.splice(index, 1);
         setTaskList(newTaskList);
-    }, [taskList]);
+    }, [
+        setTaskList,
+        taskList,
+    ]);
 
     const taskDone = useCallback((index) => () => {
         let newTaskList = [...taskList];
         newTaskList[index].isDone = true;
         newTaskList[index].state = TASK_STATUS.done;
         setTaskList(newTaskList);
-    }, [taskList]);
+    }, [
+        setTaskList,
+        taskList,
+    ]);
 
     return (
-        <CardHolder title={'To Do'} addTask={addTask} taskStatus={TASK_STATUS.toDo}>
-            {taskList.map((task, index) => {
-                if (task.state === TASK_STATUS.toDo) {
-                    return (
-                        <div key={task.taskName}>
-                            <div className={"state"}>
-                                <Card
-                                    taskName={task.taskName}
-                                    isDone={task.isDone}
-                                    index={index}
-                                    changeName={changeName}
-                                    moveUp={moveUp}
-                                    moveDown={moveDown}
-                                    deleteTask={deleteTask}
-                                    taskDone={taskDone}
-                                    setModalContent={setModalContext}
-                                    taskDescription={task.taskDescription}
-                                    userName={task.userName}
-                                    state={task.state}>
-                                </Card>
-                            </div>
-                        </div>
-                    )
-                }
-            })}
-        </CardHolder>
+        <>
+            {COLUMN_VARIANTS.map((column) => (
+                <CardHolder
+                    addTask={addTask}
+                    key={column}
+                    taskStatus={TASK_STATUS[column]}
+                    title={TASK_STATUS[column]}
+                >
+                    {taskList.map((task, index) => {
+                        if (task.state === TASK_STATUS[column]) {
+                            return (
+                                <div key={task.taskName}>
+                                    <div className={"state"}>
+                                        <Card
+                                            deleteTask={() => deleteTask(index)}
+                                            editTask={editTask}
+                                            moveDown={() => moveDown(index)}
+                                            moveUp={() => moveUp(index)}
+                                            setModalContent={setModalContext}
+                                            state={task.state}
+                                            taskDescription={task.taskDescription}
+                                            taskDone={() => taskDone(index)}
+                                            taskName={task.taskName}
+                                            userName={task.userName}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+                </CardHolder>
+            ))}
+        </>
     )
 }
 
-export default MainScene;
+export default React.memo(MainScene);

@@ -1,45 +1,62 @@
-import React, { memo, useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { ModalContext } from "../../GlobalModalProvider";
-import { TASK_STATUS } from "../../constants/taskStatus";
 
 const AddCardModal = (props) => {
-    const [newTaskName, setNewTaskName] = useState('');
-    const [newUserName, setNewUserName] = useState('');
-    const [newTaskDescription, setNewTaskDescription] = useState('');
+    const [taskName, setTaskName] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
     const setModalContext = useContext(ModalContext);
-    // const setModalContent = useContext(ModalContext);
+
+    const handleCancel = useCallback(() => {
+        setModalContext();
+    }, [setModalContext]);
+
+    const handleSave = useCallback(() => {
+        props.addTask(
+            taskName,
+            taskDescription,
+            props.taskStatus,
+        );
+
+        setModalContext();
+    }, [
+        taskName,
+        taskDescription,
+        setModalContext,
+        props.taskStatus,
+    ]);
 
     return (
         <React.Fragment>
             <div className="modal-header">
                 <input
                     className="modal-taskname"
-                    value={newTaskName}
-                    onChange={(event) => { setNewTaskName(event.target.value) }}
+                    value={taskName}
+                    onChange={(event) => { setTaskName(event.target.value) }}
                     placeholder="Task Name"
                 />
-                <span title="Close" className="close" onClick={() => { setModalContext() }}>×</span>
+                <span title="Close" className="close" onClick={handleCancel}>×</span>
             </div>
             <textarea
                 className="modal-description"
                 type="text"
                 name="Task"
-                value={newTaskDescription}
-                onChange={(event) => { setNewTaskDescription(event.target.value) }}
+                value={taskDescription}
+                onChange={(event) => { setTaskDescription(event.target.value) }}
                 placeholder="Description"
                 cols="4"
-                maxlength="500"
+                maxLength="500"
                 required>
             </textarea>
             {props.children}
             <div className="modal-btn-wrapper">
-                {/* <button className="modal-btn-delete" >Удалить</button> */}
                 <button className="modal-btn-save"
-                    onClick={() => { props.addTask(newTaskName, newTaskDescription, props.taskStatus); setModalContext() }}>Save</button>
-                <button className="modal-btn-cancel" onClick={() => { setModalContext() }}>Cancel</button>
+                    onClick={handleSave}>
+                        Save
+                    </button>
+                <button className="modal-btn-cancel" onClick={handleCancel}>Cancel</button>
             </div>
         </React.Fragment>
     )
 }
 
-export default memo(AddCardModal);
+export default React.memo(AddCardModal);

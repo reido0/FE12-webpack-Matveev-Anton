@@ -1,15 +1,13 @@
 import React from "react";
-import CardHolder from "./Components/CardHolder/CardHolder";
 import GlobalModalProvider from "./GlobalModalProvider";
+import MainScene from "./Scenes/MainScene";
 
-const App = (props) => {
-    return (
-        <React.Fragment>
-            <GlobalModalProvider>
-                <CardHolder />
-            </GlobalModalProvider>
-        </React.Fragment>
-    )
-}
+const App = (props) => (
+    <React.Fragment>
+        <GlobalModalProvider>
+            <MainScene />
+        </GlobalModalProvider>
+    </React.Fragment>
+);
 
-export default App;
+export default React.memo(App);

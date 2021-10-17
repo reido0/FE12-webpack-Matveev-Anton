@@ -1,12 +1,24 @@
-import React, { memo, useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { ModalContext } from "../../GlobalModalProvider";
 
 const EditCardModal = (props) => {
-    const [newTaskName, setNewTaskName] = useState('');
-    const [newUserName, setNewUserName] = useState('');
-    const [newTaskDescription, setNewTaskDescription] = useState('');
+    const [newTaskName, setNewTaskName] = useState(props.taskName);
+    const [newTaskDescription, setNewTaskDescription] = useState(props.taskDescription);
     const setModalContext = useContext(ModalContext);
-    // const setModalContent = useContext(ModalContext);
+
+    const handleSave = useCallback(() => {
+        props.editTask(
+            newTaskName,
+            newTaskDescription,
+        );
+
+        setModalContext();
+    }, [
+        props.addTask,
+        setModalContext,
+        newTaskName,
+        newTaskDescription,
+    ]);
 
     return (
         <React.Fragment>
@@ -26,17 +38,17 @@ const EditCardModal = (props) => {
                 onChange={(event) => { setNewTaskDescription(event.target.value) }}
                 placeholder="Description"
                 cols="4"
-                maxlength="500"
+                maxLength="500"
                 required>
             </textarea>
             {props.children}
             <div className="modal-btn-wrapper">
                 <button className="modal-btn-save"
-                    onClick={() => { props.addTask(newTaskName, newTaskDescription); setModalContext() }}>Save</button>
+                    onClick={handleSave}>Save</button>
                 <button className="modal-btn-cancel" onClick={() => { setModalContext() }}>Cancel</button>
             </div>
         </React.Fragment>
     )
 }
 
-export default memo(EditCardModal);
+export default React.memo(EditCardModal);
