@@ -10,6 +10,11 @@
     flex-wrap: wrap;
 }
 
+.cardholders-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .board-todo,
 .board-in-progress,
 .board-done {
