@@ -44,7 +44,7 @@ const Card = (props) => {
                 {!isTaskToDo && !isTaskDone &&
                     <button className={"card-btn"} onClick={props.taskToDo(props.index)}>To Do</button>}
                 {!isTaskInProgress &&
-                    <button className={"card-btn"} onClick={props.taskInProgress(props.index)}>in Progress</button>}
+                    <button className={"card-btn"} onClick={props.taskInProgress(props.index)}>In Progress</button>}
                 {!isTaskDone && !isTaskToDo &&
                     <button button className={"card-btn"} onClick={props.taskDone(props.index)}>Done</button>}
                 <button className={"card-btn"} onClick={props.deleteTask(props.index)}>Delete</button>
