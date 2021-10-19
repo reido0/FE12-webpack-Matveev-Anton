@@ -26,7 +26,7 @@ const MainScene = (props) => {
                     state: state
                 }
             )
-            
+
             setTaskList(newTasklist);
         }
     }, [
@@ -92,9 +92,28 @@ const MainScene = (props) => {
         taskList,
     ]);
 
+    const taskToDo = useCallback((index) => () => {
+        let newTaskList = [...taskList];
+        // newTaskList[index].isDone = true;
+        newTaskList[index].state = TASK_STATUS.toDo;
+        setTaskList(newTaskList);
+    }, [
+        setTaskList,
+        taskList,
+    ]);
+
+    const taskInProgress = useCallback((index) => () => {
+        let newTaskList = [...taskList];
+        newTaskList[index].state = TASK_STATUS.inProgress;
+        setTaskList(newTaskList);
+    }, [
+        setTaskList,
+        taskList,
+    ]);
+
     const taskDone = useCallback((index) => () => {
         let newTaskList = [...taskList];
-        newTaskList[index].isDone = true;
+        // newTaskList[index].isDone = true;
         newTaskList[index].state = TASK_STATUS.done;
         setTaskList(newTaskList);
     }, [
@@ -103,7 +122,7 @@ const MainScene = (props) => {
     ]);
 
     return (
-        <>
+        <React.Fragment>
             {COLUMN_VARIANTS.map((column) => (
                 <CardHolder
                     addTask={addTask}
@@ -124,7 +143,9 @@ const MainScene = (props) => {
                                             setModalContent={setModalContext}
                                             state={task.state}
                                             taskDescription={task.taskDescription}
+                                            taskToDo={() => taskToDo(index)}
                                             taskDone={() => taskDone(index)}
+                                            taskInProgress={() => taskInProgress(index)}
                                             taskName={task.taskName}
                                             userName={task.userName}
                                         />
@@ -135,7 +156,7 @@ const MainScene = (props) => {
                     })}
                 </CardHolder>
             ))}
-        </>
+        </React.Fragment>
     )
 }
 

@@ -3,6 +3,8 @@ import { TASK_STATUS } from "../constants/taskStatus";
 import EditCardModal from "./modalContent/EditCardModal";
 
 const Card = (props) => {
+    const isTaskToDo = props.state === TASK_STATUS.toDo;
+    const isTaskInProgress = props.state === TASK_STATUS.inProgress;
     const isTaskDone = props.state === TASK_STATUS.done;
 
     const handleEditModal = useCallback(() => {
@@ -26,7 +28,7 @@ const Card = (props) => {
                 <p className={"card-taskname"}>{`${props.taskName}`}</p>
                 <p className={"card-taskname-status"}>{`is ${props.isDone ? 'done' : 'not done'}`}</p>
             </div>
-    
+
             <p className={"card-title-discription"}>Discription:</p>
             <p className={"card-discription"}>{`${props.taskDescription}`}</p>
             <p className={"finish-date"}>Date: {new Date().toDateString()}</p>
@@ -39,11 +41,15 @@ const Card = (props) => {
             <div className={"card-btn-wrapper"}>
                 <button className={"card-btn"} onClick={props.moveUp(props.index)}>MoveUp</button>
                 <button className={"card-btn"} onClick={props.moveDown(props.index)}>MoveDown</button>
-                {!isTaskDone &&
-                    <button className={"card-btn"} onClick={props.taskDone(props.index)}>Done</button>}
+                {!isTaskToDo && !isTaskDone &&
+                    <button className={"card-btn"} onClick={props.taskToDo(props.index)}>To Do</button>}
+                {!isTaskInProgress &&
+                    <button className={"card-btn"} onClick={props.taskInProgress(props.index)}>in Progress</button>}
+                {!isTaskDone && !isTaskToDo &&
+                    <button button className={"card-btn"} onClick={props.taskDone(props.index)}>Done</button>}
                 <button className={"card-btn"} onClick={props.deleteTask(props.index)}>Delete</button>
             </div>
-        </div>
+        </div >
     );
 };
 export default React.memo(Card);
