@@ -47,7 +47,8 @@ const MainScene = (props) => {
                 addTask(
                     taskName,
                     taskDescription,
-                    TASK_STATUS.toDo,
+                    // TASK_STATUS.toDo,
+                    TASK_STATUS.inProgress,
                 );
             }
         }
