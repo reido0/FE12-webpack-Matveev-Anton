@@ -41,14 +41,12 @@ const MainScene = (props) => {
 
             if (currentItem) {
                 currentItem.taskDescription = taskDescription;
-
                 setTaskList(newTasklist);
             } else {
                 addTask(
                     taskName,
                     taskDescription,
-                    // TASK_STATUS.toDo,
-                    TASK_STATUS.inProgress,
+                    TASK_STATUS.toDo,
                 );
             }
         }
@@ -95,7 +93,7 @@ const MainScene = (props) => {
 
     const taskToDo = useCallback((index) => () => {
         let newTaskList = [...taskList];
-        // newTaskList[index].isDone = true;
+        newTaskList[index].isDone = false;
         newTaskList[index].state = TASK_STATUS.toDo;
         setTaskList(newTaskList);
     }, [
@@ -105,6 +103,7 @@ const MainScene = (props) => {
 
     const taskInProgress = useCallback((index) => () => {
         let newTaskList = [...taskList];
+        newTaskList[index].isDone = false;
         newTaskList[index].state = TASK_STATUS.inProgress;
         setTaskList(newTaskList);
     }, [
@@ -114,7 +113,7 @@ const MainScene = (props) => {
 
     const taskDone = useCallback((index) => () => {
         let newTaskList = [...taskList];
-        // newTaskList[index].isDone = true;
+        newTaskList[index].isDone = true;
         newTaskList[index].state = TASK_STATUS.done;
         setTaskList(newTaskList);
     }, [
@@ -149,6 +148,7 @@ const MainScene = (props) => {
                                             taskInProgress={() => taskInProgress(index)}
                                             taskName={task.taskName}
                                             userName={task.userName}
+                                            isDone={task.isDone}
                                         />
                                     </div>
                                 </div>

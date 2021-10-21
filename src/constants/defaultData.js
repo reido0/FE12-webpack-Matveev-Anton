@@ -3,7 +3,7 @@ import { TASK_STATUS } from './taskStatus';
 export const DEFAULT_DATA = [
     {
         taskName: '0',
-        isDone: true,
+        isDone: false,
         taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
         userName: 'Xeon',
         state: TASK_STATUS.toDo
@@ -17,7 +17,7 @@ export const DEFAULT_DATA = [
     },
     {
         taskName: '2',
-        isDone: true,
+        isDone: false,
         taskDescription: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium animi officia natus, voluptatibus aliquid perspiciatis.',
         userName: 'Xeon',
         state: TASK_STATUS.inProgress
