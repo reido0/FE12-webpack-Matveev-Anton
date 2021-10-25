@@ -10,6 +10,7 @@ const EditCardModal = (props) => {
         props.editTask(
             newTaskName,
             newTaskDescription,
+            props.taskId
         );
 
         setModalContext();

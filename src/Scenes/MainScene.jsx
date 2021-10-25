@@ -9,7 +9,7 @@ import {
 import { ModalContext } from "../GlobalModalProvider";
 
 const MainScene = (props) => {
-    console.log('mainscene');
+
     const [taskList, setTaskList] = useState(DEFAULT_DATA);
     const setModalContext = useContext(ModalContext);
 
@@ -19,6 +19,7 @@ const MainScene = (props) => {
 
             newTasklist.push(
                 {
+                    id: Math.floor(Math.random * 10000),
                     taskName: newTaskName,
                     isDone: false,
                     taskDescription: newTaskDescription,
@@ -30,30 +31,20 @@ const MainScene = (props) => {
             setTaskList(newTasklist);
         }
     }, [
-        setTaskList,
-        taskList,
+        taskList
     ]);
 
-    const editTask = useCallback((taskName, taskDescription) => {
+    const editTask = useCallback((taskName, taskDescription, taskId) => {
         if (Boolean(taskName) && Boolean(taskDescription)) {
             const newTasklist = [...taskList];
-            const currentItem = newTasklist.find((item) => item.taskName === taskName);
+            const currentItem = newTasklist.find((item) => item.id === taskId);
+            currentItem.taskName = taskName;
+            currentItem.taskDescription = taskDescription;
+            setTaskList(newTasklist);
 
-            if (currentItem) {
-                currentItem.taskDescription = taskDescription;
-                setTaskList(newTasklist);
-            } else {
-                addTask(
-                    taskName,
-                    taskDescription,
-                    TASK_STATUS.toDo,
-                );
-            }
         }
     }, [
-        setTaskList,
-        taskList,
-        addTask,
+        taskList
     ]);
 
     const moveUp = useCallback((index) => () => {
@@ -149,6 +140,7 @@ const MainScene = (props) => {
                                             taskName={task.taskName}
                                             userName={task.userName}
                                             isDone={task.isDone}
+                                            taskId={task.id}
                                         />
                                     </div>
                                 </div>

@@ -7,19 +7,20 @@ const Card = (props) => {
     const isTaskInProgress = props.state === TASK_STATUS.inProgress;
     const isTaskDone = props.state === TASK_STATUS.done;
 
-    const handleEditModal = useCallback(() => {
+    const handleEditModal = () => {
         props.setModalContent(
             <EditCardModal
                 taskName={props.taskName}
                 taskDescription={props.taskDescription}
                 editTask={props.editTask}
+                taskId={props.taskId}
             />);
-    }, [props.setModalContent]);
+    };
 
     return (
         <div className={"card-item marker-white"}>
             {!isTaskDone && (
-                <button className={"btn-card btn-card-edit"} onClick={() => handleEditModal()} >
+                <button className={"btn-card btn-card-edit"} onClick={handleEditModal} >
                     <i className={"fas fa-pencil-alt"}></i>
                 </button>
             )}
@@ -52,4 +53,5 @@ const Card = (props) => {
         </div >
     );
 };
+
 export default React.memo(Card);
